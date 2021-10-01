@@ -16,8 +16,7 @@
     </body>
     <script>
         var bankName = 'CashMoney Bank'
-        let letterText = ''
-
+        
         const customers = [ 
             { fname: 'Brianna', balance: -54.99, rate: 2.7 },
             { fname: 'Dillon', balance: 1014.94, rate: 5.1 },
@@ -33,22 +32,19 @@
         //formulates a specific message to each client based on their respective balances. 
         function customerStatus (name, balance, rate) {
             if (balance == 0) {
-                letterText += `Hello ${name}, greetings from ${bankName}. Your balance is current. No need for action until next month.`;
+                return `Hello ${name}, greetings from ${bankName}. Your balance is current. No need for action until next month.`;
             } else if (balance < 0) {
-                letterText += `Hello ${name}, this is an attempt to collect a debt owed to ${bankName}. Your account is past due by the amount of ${balance}.`;
+                return `Hello ${name}, greetings from ${bankName}. Because you are such a great customer, we're lowering your interest rate to ${rate}%.`;
             } else {
-                letterText += `Hello ${name}, greetings from ${bankName}. Because you are such a great customer, we're lowering your interest rate to ${rate}%.`;
+                return `Hello ${name}, this is an attempt to collect a debt owed to ${bankName}. Your account is past due by the amount of $${balance}.`;
             }
         }
-        //creates divs for each customer and appends them to the DOM
+        //creates div for each customer and appends them to the DOM
         for (customer in customers) {
             let letter = document.createElement('div');
-            customerStatus(customers[customer].fname, customers[customer].balance, customers[customer].rate);
-            letter.textContent = letterText;
+            letter.textContent = customerStatus(customers[customer].fname, customers[customer].balance, customers[customer].rate);
             letter.classList.add('letter');
-            let container = document.querySelector('#letterDiv');
-            container.appendChild(letter);
-            letterText = '';
+            document.querySelector('#letterDiv').appendChild(letter);
         }
     </script>
 </html>
