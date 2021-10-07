@@ -6,12 +6,14 @@ let months = ["January", "February", "March",
 // you can use either a for loop or an array.map to populate the select. remember that while arrays start with 
 // zero, month numbers go from 1-12
 let select = document.querySelector('#months');
-months.map(function(month){
+months.forEach(function(month){
     let counter = 0;
     select.innerHTML += `<option value="${counter}">${month}</option>`;
     counter++;
 });
 
+
+document.querySelector('#inputYear').value = new Date().getFullYear();
 // modify this script to run a function called printCalendar() when the user clicks the "Go" button
 document.querySelector('#go').addEventListener('click', function printCalendar(){
     document.getElementById('calendarDays').innerHTML = null;
