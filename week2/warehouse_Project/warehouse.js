@@ -22,17 +22,26 @@ const parts = [
 ];
 
 // list of each part number and qty for check-off in the "detailsList" element
-let uList = document.createElement('ul');
-parts.forEach(part => uList.innerHTML += `<li>${part.qty} (${part.partNbr}) - ${part.partDescr}</li>`);
-document.querySelector('#detailsList').appendChild(uList);
+let form = document.createElement('form');
+parts.forEach(function(part){
+    let input = document.createElement('input');
+    input.setAttribute('type', 'checkbox');
+    input.setAttribute('id', `${part.partNbr}`);
+    let label = document.createElement('label');
+    label.setAttribute('id', `${part.partNbr}`);
+    label.textContent = `${part.qty} (${part.partNbr}) - ${part.partDescr}`;
+    label.innerHTML += '<br>';
+    form.append(input, label);
+});
+document.querySelector('#detailsList').appendChild(form);
 
 // if parts requiring special handling exist (in aisle B3), list of items needing 
 // special packaging in the "specialPackaging" element, else remove element
 let specialPackaging = document.querySelector('#specialPackaging');
-let isSpecPack = parts.some(part => part.aisle == 'B3');
+let specialHandlingParts = parts.filter(part => part.aisle == 'B3');
 
-if (isSpecPack) {
-    parts.map(part => part.aisle == 'B3' ? specialPackaging.innerHTML += `<p>Item: ${part.partNbr} / Qty: ${part.qty}</p>` : '');
+if(specialHandlingParts.length != 0) {
+    specialHandlingParts.forEach(part => specialPackaging.innerHTML += `<p>Item: ${part.partNbr} / Qty: ${part.qty}</p>`);
     specialPackaging.style.height = 'min-content';
     specialPackaging.style.width = 'max-content';
 } else {
