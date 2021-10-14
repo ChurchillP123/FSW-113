@@ -5,12 +5,24 @@ let itemID;
 // the 'queryType' and 'itemID' elements in starwars.html to the function 
 // called 'getFromSWAPI()'
 
+queryType = document.querySelector('#queryType');
+queryType.addEventListener('change', (e) => {
+    if (e.target.value == 'starships'){
+        itemID = document.querySelector('#itemID');
+        itemID.value = '2';
+        itemID.addEventListener('input', (e) => {
+            if(e.target.value == '4') {
+                alert('There is no 4th Starship in the database.');
+            }
+        });
+    }
+});
+
 function fetchData() {
     queryType = document.querySelector('#queryType').value;
     itemID = document.querySelector('#itemID').value;
     getFromSWAPI();
 }
-
 
 function getFromSWAPI() {
     // assign values to any necessary variable
@@ -33,25 +45,9 @@ function getFromSWAPI() {
 // 'dataValue2' elements in starwars.html.
 
 function updateInfo(data) {
-    let label1 = document.querySelector('#dataLabel1');
-    let label2 = document.querySelector('#dataLabel2');
-    let value1 = document.querySelector('#dataValue1');
-    let value2 = document.querySelector('#dataValue2');
-    
-    if (queryType == 'people') {
-        label1.innerText = 'Person Name:';
-        value1.innerText = data.name;
-        label2.innerText = 'Hair Color:'
-        value2.innerText = data.hair_color;
-    } else if (queryType == 'planets') {
-        label1.innerText = 'Planet Name:';
-        value1.innerText = data.name;
-        label2.innerText = 'Climate:';
-        value2.innerText = data.climate;
-    } else {
-        label1.innerText = 'Starship Name:';
-        value1.innerText = data.name;
-        label2.innerText = 'Model:';
-        value2.innerText = data.length;
-    }
+    const keys = Object.keys(data);
+    document.querySelector('#dataLabel1').innerText = keys[0];
+    document.querySelector('#dataValue1').innerText = data[keys[0]];
+    document.querySelector('#dataLabel2').innerText = keys[1];
+    document.querySelector('#dataValue2').innerText = data[keys[1]];
 }
