@@ -4,37 +4,37 @@ let itemID;
 // define a function called 'fetchData()' that passes the values from 
 // the 'queryType' and 'itemID' elements in starwars.html to the function 
 // called 'getFromSWAPI()'
-
-queryType = document.querySelector('#queryType');
-queryType.addEventListener('change', (e) => {
-    if (e.target.value == 'starships'){
-        itemID = document.querySelector('#itemID');
-        itemID.value = '2';
-        itemID.addEventListener('input', (e) => {
-            if(e.target.value == '4') {
-                alert('There is no 4th Starship in the database.');
-            }
-        });
-    }
-});
-
+clearInputs();
 function fetchData() {
     queryType = document.querySelector('#queryType').value;
     itemID = document.querySelector('#itemID').value;
-    getFromSWAPI();
+    getFromSWAPI(queryType, itemID);
 }
 
-function getFromSWAPI() {
+function getFromSWAPI(queryType, itemID) {
     // assign values to any necessary variable
     fetch(`https://swapi.dev/api/${queryType}/${itemID}`)
     .then(function (response) {
+        if (!response.ok) {
+            throw Error(response.statusText);
+        }
         return response.json()
     })
     .then(function(data){
-        updateInfo(data)
+        updateInfo(data);
+
     })
     .catch(function(err) {
-        console.warn(err)
+        if (err === 'Error: NOT FOUND') {
+            clearData();
+            clearInputs();
+            alert('No Entry Found in the Database');
+        } else {
+            console.warn("Error with swapi.dev: " + err);
+            alert('No Entry Found in the Database');
+            clearData();
+            clearInputs();
+        }
     })
 }
 
@@ -50,4 +50,16 @@ function updateInfo(data) {
     document.querySelector('#dataValue1').innerText = data[keys[0]];
     document.querySelector('#dataLabel2').innerText = keys[1];
     document.querySelector('#dataValue2').innerText = data[keys[1]];
+}
+
+function clearData() {
+    document.querySelector('#dataLabel1').innerText = "";
+    document.querySelector('#dataValue1').innerText = "";
+    document.querySelector('#dataLabel2').innerText = "";
+    document.querySelector('#dataValue2').innerText = "";
+}
+
+function clearInputs() {
+    document.querySelector('#queryType').value = "";
+    document.querySelector('#itemID').value = "";
 }
