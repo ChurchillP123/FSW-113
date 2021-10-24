@@ -5,14 +5,13 @@ const lang = 'JavaScript';
 // the array as an argument.
 
 document.querySelector('#submit').addEventListener('click', () => {
-    const nodeList = document.querySelectorAll('input');
-    const combinedArr = [...nodeList];
+    const combinedArr = [...document.querySelectorAll(input)].map(input => input.value);
     chkLang(combinedArr);
 });
 
 
 function chkLang(langs) {
-    let result = langs.some(x => x.value.toLowerCase() == lang.toLowerCase());
+    let result = langs.some(x => x.toLowerCase() == lang.toLowerCase());
     
     let obj = document.querySelector('#TestResult')
     if (result) 
