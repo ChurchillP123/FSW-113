@@ -14,7 +14,8 @@ const certGrade = document.querySelector('#certGrade');
 // Add am event listener that responds to the click of the "print" button by calling a function to instantiate
 //  a new student object, and another function to print the certificate.
 document.querySelector('#print').addEventListener('click', () => {
-    toNumArray();
+    createStudent();
+    fillCertificate(student);
 });
 // Add an event listener that responds to the click of the reset button by resetting all the values
 // both in the form and in the certificate.
@@ -28,8 +29,10 @@ document.querySelector('#reset').addEventListener('click', () => {
     certGrade.innerText = "";
 });
 // Create a function that instantiates a new student object with the input from the HTML form.
-function createStudent(name, className, student, possible) {
-    student = new Student(name, className, student, possible);
+function createStudent() {
+    let studentScoresArr = toNumArray(studentScores.value);
+    let possibleScoresArr = toNumArray(possibleScores.value);
+    student = new Student(name.value, className.value, studentScoresArr, possibleScoresArr);
     fillCertificate(student);
 }
 // Create a function that fills in the student's name, class name, and calculated grade on the certificate .
@@ -40,8 +43,6 @@ function fillCertificate(student) {
 }
 // Create a function that converts the contents of a comma-separated text string to a numeric array.
 // You can use this function when instantiating the arrays in the student object.
-function toNumArray() {
-    let studentScoresArr = studentScores.value.split(',').map(score => Number(score.trim()));
-    let possibleScoresArr = possibleScores.value.split(',').map(score => Number(score.trim()));
-    createStudent(name.value, className.value, studentScoresArr, possibleScoresArr);
+function toNumArray(str) {
+    return str.split(',').map(score => Number(score.trim()));
 }

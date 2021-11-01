@@ -26,20 +26,12 @@ class Student {
         return this.addAllScores() / this.addAllPossible() * 100;
     }
     getLetterGrade() {
-        if (this.getNumberGrade() >= 90) {
-            return 'A';
-        } else if (this.getNumberGrade() >= 85) {
-            return 'B+';
-        } else if (this.getNumberGrade() >= 80) {
-            return 'B';
-        } else if (this.getNumberGrade() >= 75) {
-            return 'C+';
-        } else if (this.getNumberGrade() >= 70) {
-            return 'C';
-        } else if (this.getNumberGrade() >= 60) {
-            return 'D';
-        } else {
-            return 'F';
-        }
+        if (this.getNumberGrade() >= 90) return 'A';
+        if (this.getNumberGrade() >= 85) return 'B+';
+        if (this.getNumberGrade() >= 80) return 'B';
+        if (this.getNumberGrade() >= 75) return 'C+';
+        if (this.getNumberGrade() >= 70) return 'C';
+        if (this.getNumberGrade() >= 60) return 'D';
+        return 'F';
     }
 }
