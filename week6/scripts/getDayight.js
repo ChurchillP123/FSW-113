@@ -2,5 +2,5 @@
 // is daylight in the specified city. It should return "blue" if daylight, and "black" if night time.
 
 export default function dayOrNight(data) {
-    return data.dt >= data.sys.sunrise ? (data.dt < data.sys.sunset ? 'blue' : 'black') : 'black';
+    return (data.dt < data.sys.sunrise || data.dt > data.sys.sunset) ? 'black' : 'blue';
 }

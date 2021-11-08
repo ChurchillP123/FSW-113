@@ -18,16 +18,13 @@ document.querySelector('#goBttn').addEventListener('click', () => {
 function queryAPI(city) {
     fetchData(city)
         .then(function(data) {
-            fillApp(data)
+            toLocal(data);
         })
         .catch(function(err) {
-            console.warn(err)
+            console.warn(err);
         })
 }
 
-function fillApp(data) {
-    toLocal(data);
-}
 // use an asynchronous call to fetches the current weather for the specified city, awaits it, 
 // and returns the resulting data
 const fetchData = async(city) => {
