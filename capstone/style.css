@@ -1,0 +1,74 @@
+* {
+    background-image:url(images/wallpaper.jpg);
+    margin: 5px;
+    box-sizing: border-box;
+}
+
+#reportWrapper {
+    border: 3px solid white;
+    border-radius: 15px;
+    width: 25%;
+    margin: 0 auto;
+    padding-bottom: 5px;
+}
+
+#topbar {
+    color: white;
+    background-image: none;
+    background-color: red;
+    border-radius: 5px;
+    width: 85%;
+    margin:8px auto;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+#reporterByDiv, #bugDescrDiv {
+    width: 90%;
+    margin: auto;
+    margin-bottom: 2px;
+}
+
+#systemDiv, #subSystemDiv {
+    width: 88%;
+    margin: auto;
+    margin-left: 20px;
+    margin-bottom: 2px;
+}
+
+#reportedBy, #system, #subSystem, #bugDesc {
+    background-image: none;
+    background-color: lightgrey;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+#bttnDiv {
+    margin-top: 0px;
+    width: 93%;
+}
+
+#resetBtn, #submitBtn {
+    background-image: none;
+    background-color: red;
+    color: white;
+    padding: 5px;
+    margin: 1px;
+    font-size: 15px;
+}
+
+#listWrapper {
+    border-radius: 10px;
+    width: 50%;
+    margin: auto;
+    margin-top: 0px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+div, p {
+    background-image: none;
+}
