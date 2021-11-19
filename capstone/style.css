@@ -10,6 +10,7 @@
     width: 25%;
     margin: 0 auto;
     padding-bottom: 5px;
+    display: grid;
 }
 
 #topbar {
@@ -27,15 +28,14 @@
 }
 
 #reporterByDiv, #bugDescrDiv {
-    width: 90%;
     margin: auto;
     margin-bottom: 2px;
 }
 
 #systemDiv, #subSystemDiv {
-    width: 88%;
+    width: 97%;
     margin: auto;
-    margin-left: 20px;
+    margin-left: 0px;
     margin-bottom: 2px;
 }
 
@@ -67,8 +67,43 @@
     margin-top: 0px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    border: 2px solid white;
 }
 
 div, p {
     background-image: none;
+}
+
+.divStyle {
+    background-image: none;
+    background-color: lightgrey;
+    height: 200px;
+    overflow-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+}
+
+.checkbox {
+    width: 20px;
+    background-color: red;
+    border-radius: 25px;
+    text-align: center;
+}
+
+.delBtn {
+    width: 20px;
+    background-color: red;
+    border-radius: 25px;
+    text-align: center;
+}
+
+.flexContainer {
+    justify-self: baseline;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.resolveBug {
+    color: white;
+    background-image:url(images/wallpaper.jpg);
 }

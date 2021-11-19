@@ -24,37 +24,24 @@ class Bug {
         system.textContent = 'System: ' + this.system + ' / ' + this.subSystem;
         let desc = document.createElement('p');
         desc.textContent = this.bugDesc;
-        div.style.backgroundImage = 'none';
-        div.style.backgroundColor = 'lightgrey';
-        div.style.height = '200px';
-        div.style.overflowWrap = 'break-word';
-        div.style.display = 'flex';
-        div.style.flexDirection = 'column';
-
+        div.setAttribute('class', 'divStyle');
+      
         let flexContainer = document.createElement('div');
         let check = document.createElement('div');
         check.innerHTML += '&#10004;';
-        check.style.width = '20px';
-        check.style.backgroundColor = 'red';
-        check.style.borderRadius = '25px';
-        check.style.textAlign = 'center';
+        check.setAttribute('class', 'checkbox');
         check.addEventListener('click', this.resolveBug);
+
         let delBtn = document.createElement('div');
         delBtn.innerHTML += '&#10006;';
-        delBtn.style.width = '20px';
-        delBtn.style.backgroundColor = 'red';
-        delBtn.style.borderRadius = '25px';
-        delBtn.style.textAlign = 'center';
+        delBtn.setAttribute('class', 'delBtn');
         delBtn.addEventListener('click', this.deleteBug);
+        
         flexContainer.append(check, delBtn);
-
-        flexContainer.style.justifySelf = 'baseline';
-        flexContainer.style.display = 'flex';
-        flexContainer.style.justifyContent = 'flex-end';
+        flexContainer.setAttribute('class', 'flexContainer');
         
         div.append(report, system, desc, flexContainer);
         listWrapper.appendChild(div);
-        listWrapper.style.border = '2px solid white';
     }
 
     deleteBug() { 
@@ -62,8 +49,7 @@ class Bug {
     }
 
     resolveBug() {
-        this.parentNode.parentNode.style.color = 'white';
-        this.parentNode.parentNode.style.backgroundImage = 'url(images/wallpaper.jpg)';
+        this.parentNode.parentNode.setAttribute('class', 'resolveBug');
     }
 }
 
